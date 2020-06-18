@@ -56,7 +56,9 @@ local function setup(config)
 
 	client.connect_signal("manage", function(c)
 		-- set icon based on c.class
-		set_icon(c, icons[c.class])
+		awful.spawn.easy_async_with_shell("sleep " .. set_delay, function()
+			set_icon(c, icons[c.class])
+		end)
 
 		if len(dynamic_icons) == 0 then
 			-- user has not defined any dynamic_icons; exit
