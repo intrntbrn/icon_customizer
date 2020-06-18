@@ -1,5 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
+local cairo = require("lgi").cairo
 
 local module = {}
 
@@ -26,9 +27,14 @@ local function contains(T, V)
 end
 
 local function set_icon(c, icon)
-	if c and c.valid and icon then
-		icon = gears.surface(icon)
-		c.icon = icon and icon._native or nil
+	if c and c.valid then
+		if not c.icon_backup then
+			c.icon_backup = icons[c.class] and gears.surface(icons[c.class]) or gears.surface(c.icon)
+		end
+		if icon then
+			icon = gears.surface(icon)
+			c.icon = icon and icon._native or nil
+		end
 	end
 end
 
@@ -39,6 +45,10 @@ local function set_dynamic_icon(c)
 			return
 		end
 	end
+
+	if c.icon_backup then
+		c.icon = c.icon_backup and c.icon_backup._native or nil
+	end
 end
 
 local function setup(config)
@@ -47,12 +57,12 @@ local function setup(config)
 	icons = cfg.icons or {}
 	dynamic_icons = cfg.dynamic_icons or {}
 	dynamic_classes = cfg.dynamic_classes or {}
-	delay = cfg.delay or 1.0
+	delay = cfg.delay or 0.5
 
 	if type(icons) ~= 'table' then icons = {} end
 	if type(dynamic_icons) ~= 'table' then dynamic_icons = {} end
 	if type(dynamic_classes) ~= 'table' then dynamic_classes = {} end
-	if type(delay) ~= 'number' then delay = 1.0 end
+	if type(delay) ~= 'number' then delay = 0.5 end
 
 	client.connect_signal("manage", function(c)
 		-- set icon based on c.class
