@@ -6,10 +6,7 @@ local module = {}
 
 local client = client
 
-local icons
-local dynamic_icons
-local dynamic_classes
-local delay
+local icons, dynamic_icons, dynamic_classes, delay
 
 local function len(T)
 	local count = 0
