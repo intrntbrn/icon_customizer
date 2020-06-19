@@ -60,6 +60,8 @@ theme.ic_dynamic_icons = {
 
 ```
 
+Get application class names or titles by using `xprop`.
+
 Limitations:
 ------------
 It is not possible to set custom icons for applications that are constantly updating the icon themselves (e.g. `Gimp`).
