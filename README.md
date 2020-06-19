@@ -2,7 +2,7 @@ icon_customizer for awesomewm
 ==================
 
 <p align="center">
-  <img src="https://s7.gifyu.com/images/smart_border_github.gif">
+  <img src="https://s7.gifyu.com/images/custom_icons.gif">
 </p>
 
 Features:
@@ -32,14 +32,6 @@ Clone the repo and import the module:
 1. `git clone https://github.com/intrntbrn/icon_customizer ~/.config/awesome/icon_customizer`
 1. `echo "require('icon_customizer'){}" >> ~/.config/awesome/rc.lua`
 
-Customization:
-------------
-
-| name | default | description |
-|---|---|---|
-| `positions` | { "left", "right", "top", "bottom" } | border positions
-| `button_positions` | { "top" } | button positions |
-
 Example Configuration: 
 ------------
 Define your custom icons in `theme.lua`:
@@ -48,9 +40,6 @@ local icon_dir = os.getenv("HOME") .. "/.config/awesome/icons/"
 theme.ic_icons = {
 	["Chromium"] = icon_dir .. "chromium.png",
 	["firefox"] = icon_dir .. "firefox.png",
-	["code-oss"] = icon_dir .. "visualstudiocode.png",
-	["feh"] = icon_dir .. "image-viewer.png",
-	["vlc"] = icon_dir .. "vlc.png",
 	["Zathura"] = icon_dir .. "zathura.png",
 	["Steam"] = icon_dir .. "steam.png",
 	["discord"] = icon_dir .. "discord.png",
@@ -64,10 +53,7 @@ theme.ic_dynamic_icons = {
 	["- VIM$"] = icon_dir .. "vim.png",
 	["- TMUX$"] = icon_dir .. "tmux.png",
 	["^ranger$"] = icon_dir .. "file-manager.png",
-	["^cd$"] = icon_dir .. "file-manager.png",
-	["^neomutt$"] = icon_dir .. "gmail.png",
 	["^spt$"] = icon_dir .. "spotify.png",
-	["^lazygit$"] = icon_dir .. "git.png",
 	["^googler$"] = icon_dir .. "google.png",
 	["- rtv"] = icon_dir .. "reddit.png"
 }
@@ -77,3 +63,9 @@ theme.ic_dynamic_icons = {
 Limitations:
 ------------
 It is not possible to set custom icons for applications that are constantly updating the icon themselves (e.g. `Gimp`).
+
+Related Work:
+------------
+
+* icons: [numix circle](https://github.com/numixproject/numix-icon-theme-circle)
+* awesomewm taglist: [fancy_taglist](https://gist.github.com/intrntbrn/08af1058d887f4d10a464c6f272ceafa)
