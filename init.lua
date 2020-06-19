@@ -66,7 +66,9 @@ local function setup(config)
 	client.connect_signal("manage", function(c)
 		-- set icon based on c.class
 		awful.spawn.easy_async_with_shell("sleep " .. delay, function()
-			set_icon(c, icons[c.class])
+			if c and c.valid and icons[c.class] then
+				set_icon(c, icons[c.class])
+			end
 		end)
 
 		if len(dynamic_icons) == 0 then
@@ -94,8 +96,10 @@ return setmetatable(module, { __call = function(_, ...)
 	-- we also have to manually emit a fake "property::name" signal to update dynamic icons.
 	awful.spawn.easy_async_with_shell("sleep " .. delay, function()
 		for _, c in ipairs(client.get()) do
-			set_icon(c, icons[c.class])
-			c:emit_signal("property::name")
+			if c and c.valid and icons[c.class] then
+				set_icon(c, icons[c.class])
+				c:emit_signal("property::name")
+			end
 		end
 	end)
 end })
