@@ -7,12 +7,22 @@ icon_customizer for awesomewm
 
 Features:
 ------------
-- Define your own icons
-- Set custom icons for terminal applications
+- Define your own icons for applications
+- Set custom icons for terminal applications by using regular expressions
 
 Prerequisite:
 ------------
 You need to configure your shell and terminal to support dynamic titles.
+Verify your setup by typing `sleep 5` in your terminal. If the title  (`WM_NAME`) of the terminal changes while sleep is running, you are good to go.
+Otherwise your shell is most likely not configured to show dynamic titles.
+
+Minimal configurations are provided for `bash` and `zsh`:
+
+```
+echo "source ~/.config/awesome/icon_customizer/dynamictitles.bash" >> ~/.bashrc
+echo "source ~/.config/awesome/icon_customizer/dynamictitles.zsh" >> ~/.zshrc
+```
+
 
 Installation:
 ------------
@@ -21,6 +31,14 @@ Clone the repo and import the module:
 
 1. `git clone https://github.com/intrntbrn/icon_customizer ~/.config/awesome/icon_customizer`
 1. `echo "require('icon_customizer'){}" >> ~/.config/awesome/rc.lua`
+
+Customization:
+------------
+
+| name | default | description |
+|---|---|---|
+| `positions` | { "left", "right", "top", "bottom" } | border positions
+| `button_positions` | { "top" } | button positions |
 
 Example Configuration: 
 ------------
@@ -56,3 +74,6 @@ theme.ic_dynamic_icons = {
 
 ```
 
+Limitations:
+------------
+It is not possible to set custom icons for applications that are constantly updating the icon themselves (e.g. `Gimp`).
