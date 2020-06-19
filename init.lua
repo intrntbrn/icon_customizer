@@ -56,12 +56,12 @@ local function setup(config)
 	icons = cfg.icons or {}
 	dynamic_icons = cfg.dynamic_icons or {}
 	dynamic_classes = cfg.dynamic_classes or {}
-	delay = cfg.delay or 1.0
+	delay = cfg.delay or 0.5
 
 	if type(icons) ~= 'table' then icons = {} end
 	if type(dynamic_icons) ~= 'table' then dynamic_icons = {} end
 	if type(dynamic_classes) ~= 'table' then dynamic_classes = {} end
-	if type(delay) ~= 'number' then delay = 1.0 end
+	if type(delay) ~= 'number' then delay = 0.5 end
 
 	client.connect_signal("manage", function(c)
 		-- set icon based on c.class
@@ -93,7 +93,7 @@ return setmetatable(module, { __call = function(_, ...)
 	setup(...)
 	-- we have to update all clients icons manually when the user restarts awesomewm
 	-- since there is no "property::name" signal emitted by already running clients.
-	-- the set delay has to be higher than the regular_delay, otherwise a race condition exists.
+	-- the set delay has to be higher than the regular delay, otherwise a race condition between both signals exists.
 	awful.spawn.easy_async_with_shell("sleep " .. (delay + 0.5), function()
 		for _, c in ipairs(client.get()) do
 			if c and c.valid then
