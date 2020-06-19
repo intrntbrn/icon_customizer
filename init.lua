@@ -38,10 +38,12 @@ local function set_icon(c, icon)
 end
 
 local function set_dynamic_icon(c)
-	for regex, icon in pairs(dynamic_icons) do
-		if string.find(c.name, regex) then
-			set_icon(c, icon)
-			return
+	if c.name then
+		for regex, icon in pairs(dynamic_icons) do
+			if string.find(c.name, regex) then
+				set_icon(c, icon)
+				return
+			end
 		end
 	end
 
