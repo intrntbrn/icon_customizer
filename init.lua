@@ -1,5 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
+local theme = require("beautiful")
 
 local module = {}
 
@@ -55,9 +56,9 @@ end
 local function setup(config)
 	local cfg = config or {}
 
-	icons = cfg.icons or {}
-	dynamic_icons = cfg.dynamic_icons or {}
-	dynamic_classes = cfg.dynamic_classes or {}
+	icons = cfg.icons or theme.ic_icons or {}
+	dynamic_icons = cfg.dynamic_icons or theme.ic_dynamic_icons or {}
+	dynamic_classes = cfg.dynamic_classes or theme.ic_dynamic_classes or {}
 	delay = cfg.delay or 0.5
 
 	if type(icons) ~= 'table' then icons = {} end
