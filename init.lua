@@ -73,6 +73,7 @@ local function setup(config)
     dynamic_icons = cfg.dynamic_icons or theme.ic_dynamic_icons or {}
     dynamic_classes = cfg.dynamic_classes or theme.ic_dynamic_classes or {}
     delay = cfg.delay or 0.5
+    local fallback_icon = cfg.fallback_icon or theme.ic_fallback_icon or nil
 
     if type(icons) ~= 'table' then
         icons = {}
@@ -90,8 +91,12 @@ local function setup(config)
     client.connect_signal("manage", function(c)
         -- set icon based on c.class
         awful.spawn.easy_async_with_shell("sleep " .. delay, function()
-            if c and c.valid and icons[c.class] then
-                set_icon(c, icons[c.class])
+            if c and c.valid then
+                if icons[c.class] then
+                    set_icon(c, icons[c.class])
+                elseif not c.icon and fallback_icon then
+                    set_icon(c, fallback_icon)
+                end
             end
         end)
 
@@ -126,5 +131,5 @@ return setmetatable(module, {
                 end
             end
         end)
-    end
+    end,
 })
