@@ -2,7 +2,7 @@ icon_customizer for awesomewm
 ==================
 
 <p align="center">
-  <img src="https://s7.gifyu.com/images/custom_icons.gif">
+  <img src="https://user-images.githubusercontent.com/1234183/123868520-193cba80-d930-11eb-8996-26541bca9c22.gif">
 </p>
 
 Features:
